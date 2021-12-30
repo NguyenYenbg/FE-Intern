@@ -1,4 +1,3 @@
-
 //định nghĩa các rules
 Validator.isRequired=function(selector, message){
     return{
@@ -21,7 +20,7 @@ Validator.hasLowerUpperCase=function(selector, message){
     return{
         selector: selector,
         test: function(value){
-            var regex=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+            var regex=/^(?=.*[a-z])(?=.*[A-Z])/;
             return regex.test(value) ? undefined : message || 'Please enter at least 1 uppercase and 1 lowercase'
         }
     }
@@ -145,5 +144,4 @@ function Validator(options){
             }
         })
     }
-
 }
