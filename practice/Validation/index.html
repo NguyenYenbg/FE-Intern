@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DangKy</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="main">
+        <form action="" id="register" class="form">
+            <h3 class="heading">Register Member</h3>
+            <p class="desc">Register as a new member</p>
+
+            <div class="spacer"></div>
+
+            <div class="form-group">
+                <lable for="fullname" class="form-lable">Fullname</lable>
+                <input type="text" id="fullname" name="fullname" placeholder="Yen Nguyen" class="form-control">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <lable for="email" class="form-lable">Email</lable>
+                <input type="email" id="email" name="email" placeholder="yennt@gmail.com" class="form-control">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <lable for="password" class="form-lable">Password</lable>
+                <input type="password" id="password" name="password" placeholder="Enter your password" class="form-control">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <lable for="password-confirmation" class="form-lable">Confirm Password</lable>
+                <input type="password" id="password-confirmation" name="password-confirmation" placeholder="Confirm your password" class="form-control">
+                <span class="form-message"></span>
+            </div>
+
+            <button class="form-submit">Register</button>
+        </form>
+    </div>
+
+    <script src="./validator.js"></script>
+    <script>
+        Validator({
+            form: '#register',
+            formGroupSelector: '.form-group',
+            errorSelector: '.form-message',
+            rules: [
+                Validator.isRequired('#fullname'),
+                Validator.specialCharacters('#fullname'),
+                Validator.isRequired('#email'),
+                Validator.isEmail('#email'),
+                Validator.isRequired('#password'),
+                Validator.minLength('#password',8),
+                Validator.maxLength('#password',32),
+                Validator.hasLowerUpperCase('#password'),
+                Validator.isRequired('#password-confirmation'),
+                Validator.isConfirmed('#password-confirmation', function(){
+                    return document.querySelector('#register #password').value;
+                }, 'Re-entered password is incorrect'),
+            ],
+            onSubmit: function(data){
+                alert(`Congratulation '${data.fullname}' registered successfully !!!`);
+            }
+        });
+    </script>
+</body>
+</html>
