@@ -47,8 +47,6 @@
     <script>
         Validator({
             form: '#register',
-            formGroupSelector: '.form-group',
-            errorSelector: '.form-message',
             rules: [
                 Validator.isRequired('#fullname'),
                 Validator.specialCharacters('#fullname'),
@@ -61,7 +59,7 @@
                 Validator.isRequired('#password-confirmation'),
                 Validator.isConfirmed('#password-confirmation', function(){
                     return document.querySelector('#register #password').value;
-                }, 'Re-entered password is incorrect'),
+                }),
             ],
             onSubmit: function(data){
                 alert(`Congratulation '${data.fullname}' registered successfully !!!`);
